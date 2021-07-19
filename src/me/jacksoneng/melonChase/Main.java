@@ -4,16 +4,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin
 {
+    public static Server server = Bukkit.getServer();
+    
     @Override
     public void onEnable()
     {
-        getServer().getPluginManager().registerEvents(new MelonChase(), this);
-        getServer().getConsoleSender().sendMessage("MelonChase enabled");
+        server.getPluginManager().registerEvents(new MelonChase(), this);
+        server.getConsoleSender().sendMessage("MelonChase enabled");
     }
-
+    
     @Override
     public void onDisable()
     {
-        getServer().getConsoleSender().sendMessage("MelonChase disabled");
+        server.getConsoleSender().sendMessage("MelonChase disabled");
     }
 }
