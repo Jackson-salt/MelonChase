@@ -48,11 +48,11 @@ public class MelonChase implements Listener
 
                 if(direction == 0)
                 {
-                    if(!moveMelon(1, 0))
+                    if(moveMelon(1, 0))
                     {
-                        if(!moveMelon(-1, 0))
+                        if(moveMelon(-1, 0))
                         {
-                            if(!moveMelon(0, 1))
+                            if(moveMelon(0, 1))
                             {
                                 moveMelon(0, -1);
                             }
@@ -61,11 +61,11 @@ public class MelonChase implements Listener
                 }
                 else if(direction == 1)
                 {
-                    if(!moveMelon(0, -1))
+                    if(moveMelon(0, -1))
                     {
-                        if(!moveMelon(1, 0))
+                        if(moveMelon(1, 0))
                         {
-                            if(!moveMelon(-1, 0))
+                            if(moveMelon(-1, 0))
                             {
                                 moveMelon(0, 1);
                             }
@@ -74,11 +74,11 @@ public class MelonChase implements Listener
                 }
                 else if(direction == 2)
                 {
-                    if(!moveMelon(0, 1))
+                    if(moveMelon(0, 1))
                     {
-                        if(!moveMelon(0, -1))
+                        if(moveMelon(0, -1))
                         {
-                            if(!moveMelon(1, 0))
+                            if(moveMelon(1, 0))
                             {
                                 moveMelon(-1, 0);
                             }
@@ -87,11 +87,11 @@ public class MelonChase implements Listener
                 }
                 else
                 {
-                    if(!moveMelon(-1, 0))
+                    if(moveMelon(-1, 0))
                     {
-                        if(!moveMelon(0, 1))
+                        if(moveMelon(0, 1))
                         {
-                            if(!moveMelon(0, -1))
+                            if(moveMelon(0, -1))
                             {
                                 moveMelon(1, 0);
                             }
@@ -163,7 +163,7 @@ public class MelonChase implements Listener
             }
             else
             {
-                return false;
+                return true;
             }
         }
         else
@@ -182,11 +182,11 @@ public class MelonChase implements Listener
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public void setMelon(int newX, int newY, int newZ)
