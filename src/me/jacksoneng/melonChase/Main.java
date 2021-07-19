@@ -1,5 +1,7 @@
 package me.jacksoneng.melonChase;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin
