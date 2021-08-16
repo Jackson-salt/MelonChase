@@ -14,19 +14,29 @@ public class MelonChase implements Listener
     public static Material[] nonSolidBlocks = {
         Material.AIR,
         Material.WATER,
-        Material.STATIONARY_WATER,
+        Material.LAVA,
+        Material.FIRE,
+        Material.SOUL_FIRE,
         Material.SNOW,
-        Material.LONG_GRASS,
+        Material.GRASS,
+        Material.TALL_GRASS,
+        Material.FERN,
+        Material.LARGE_FERN,
+        Material.SEAGRASS,
+        Material.TALL_SEAGRASS,
         Material.DEAD_BUSH,
-        Material.CROPS
+        Material.VINE,
+        Material.CRIMSON_ROOTS,
+        Material.WARPED_ROOTS,
+        Material.NETHER_SPROUTS
     };
 
-    public static Material melon = Material.MELON_BLOCK;
+    public static Material melon = Material.MELON;
     public static World world;
     public static int x, y, z;
 
     @EventHandler
-    public void onPlayerClick(PlayerInteractEvent event)
+    public void onPlayerInteract(PlayerInteractEvent event)
     {
         Random ran = new Random();
         Block block = event.getClickedBlock();
@@ -131,10 +141,7 @@ public class MelonChase implements Listener
                 bothTrue[0] = true;
                 break;
             }
-        }
 
-        for(Material nonSolidBlock : nonSolidBlocks)
-        {
             if(nonSolidBlock == getBlock(x, y - 1, z))
             {
                 bothTrue[1] = true;
