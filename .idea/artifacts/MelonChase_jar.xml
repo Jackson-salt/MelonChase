@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="MelonChase:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/MelonChase_jar</output-path>
-    <root id="archive" name="MelonChase.jar">
-      <element id="module-output" name="MelonChase" />
-    </root>
-  </artifact>
-</component>
