@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MelonChase_jar</output-path>
     <root id="archive" name="MelonChase.jar">
       <element id="module-output" name="MelonChase" />
-      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Desktop/TestServer/spigot-1.7.10-SNAPSHOT-b1657.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
