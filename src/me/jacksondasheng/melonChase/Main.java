@@ -3,7 +3,6 @@ package me.jacksondasheng.melonChase;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.ConsoleCommandSender;
