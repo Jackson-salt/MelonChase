@@ -1,5 +1,6 @@
 package me.jacksondasheng.melonChase;
 
+import java.util.ArrayList;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
     private final ConsoleCommandSender sender = Bukkit.getConsoleSender();
-    
+
     @Override
     public void onEnable() {
         sender.sendMessage("Enabling MelonChase");
@@ -31,15 +32,14 @@ public class Main extends JavaPlugin {
                     Material.DEAD_BUSH,
                     Material.VINE
                 };
-
+                
                 private final Material melon = Material.MELON;
                 private World world;
                 private int x, y, z;
 
                 @EventHandler
                 public void onPlayerInteract(PlayerInteractEvent event) {
-                    Random ran = new Random();
-                    Block block = event.getClickedBlock();
+                    final Block block = event.getClickedBlock();
                     world = block.getWorld();
 
                     x = block.getX();
@@ -50,39 +50,23 @@ public class Main extends JavaPlugin {
                         if(isClear(x, y - 1, z)) {
                             setMelon(x, y - 1, z);
                         } else {
-                            int direction = ran.nextInt(4);
-
-                            if(direction == 0) {
-                                if(moveMelon(1, 0)) {
-                                    if(moveMelon(-1, 0)) {
-                                        if(moveMelon(0, 1)) {
-                                            moveMelon(0, -1);
-                                        }
-                                    }
+                            final ArrayList<Integer> tried = new ArrayList<Integer>();
+                            final Random ran = new Random();
+                            
+                            while(true) {
+                                final int offset = ran.nextBoolean() ? 1 : -1;
+                                
+                                if(ran.nextBoolean()) {
+                                    moveMelon(offset, 0);
+                                    tried.add(offset == 1 ? 1 : 2);
+                                } else {
+                                    moveMelon(0, offset);
+                                    tried.add(offset == 1 ? 3 : 4);
                                 }
-                            } else if(direction == 1) {
-                                if(moveMelon(0, -1)) {
-                                    if(moveMelon(1, 0)) {
-                                        if(moveMelon(-1, 0)) {
-                                            moveMelon(0, 1);
-                                        }
-                                    }
-                                }
-                            } else if(direction == 2) {
-                                if(moveMelon(0, 1)) {
-                                    if(moveMelon(0, -1)) {
-                                        if(moveMelon(1, 0)) {
-                                            moveMelon(-1, 0);
-                                        }
-                                    }
-                                }
-                            } else {
-                                if(moveMelon(-1, 0)) {
-                                    if(moveMelon(0, 1)) {
-                                        if(moveMelon(0, -1)) {
-                                            moveMelon(1, 0);
-                                        }
-                                    }
+                                
+                                if(tried.toArray().length == 4) {
+                                    tried.clear();
+                                    break;
                                 }
                             }
                         }
@@ -104,7 +88,7 @@ public class Main extends JavaPlugin {
                 }
 
                 public boolean isClear(int x, int y, int z) {
-                    boolean[] bothTrue = new boolean[2];
+                    final boolean[] bothTrue = new boolean[2];
 
                     for(Material nonSolidBlock : nonSolidBlocks) {
                         if(nonSolidBlock == getBlock(x, y, z)) {
@@ -130,7 +114,7 @@ public class Main extends JavaPlugin {
                         } else if(isClear(x, y + 1, z + zVector) && blockIsClear(x, y + 1, z)) {
                             setMelon(x, y + 1, z + zVector);
                         } else {
-                            return true;
+                            return false;
                         }
                     } else {
                         if(isClear(x + xVector, y - 1, z) && blockIsClear(x + xVector, y, z)) {
@@ -140,11 +124,11 @@ public class Main extends JavaPlugin {
                         } else if(isClear(x + xVector, y + 1, z) && blockIsClear(x, y + 1, z)) {
                             setMelon(x + xVector, y + 1, z);
                         } else {
-                            return true;
+                            return false;
                         }
                     }
 
-                    return false;
+                    return true;
                 }
 
                 public void setMelon(int newX, int newY, int newZ) {
@@ -156,7 +140,7 @@ public class Main extends JavaPlugin {
         );
         sender.sendMessage("MelonChase enabled");
     }
-    
+
     @Override
     public void onDisable() {
         sender.sendMessage("MelonChase disabled");
