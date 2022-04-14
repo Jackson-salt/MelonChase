@@ -14,11 +14,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
-    private final ConsoleCommandSender sender = Bukkit.getConsoleSender();
-
     @Override
     public void onEnable() {
-        sender.sendMessage("Enabling MelonChase");
         Bukkit.getServer().getPluginManager().registerEvents(
             new Listener() {
                 private final Material[] nonSolidBlocks = {
@@ -138,11 +135,5 @@ public class Main extends JavaPlugin {
             },
             this
         );
-        sender.sendMessage("MelonChase enabled");
-    }
-
-    @Override
-    public void onDisable() {
-        sender.sendMessage("MelonChase disabled");
     }
 }
